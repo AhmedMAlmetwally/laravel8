@@ -1,0 +1,23 @@
+The needed task is to implement a small web application that have these specs:
+
+1- It has only 1 page which called: product page. it contains 5 main data: product title, image, price, availability, and add-to-cart button.
+2- Is has 2 languages (ar, en) and 2 regions(sa, ae). 
+3- The URL of the app should be in such format: www.domain.com/app-name/en/ae
+where the 'app-name' is the name of the app, 'en' is the language code, 'ae' is the region code.
+4- The title of the product will be displayed in the current language based on URL.
+5- the 'ar' language have an "RTL" layout direction.
+6- Each region has its own product qty in stock, and a custom price.
+7- The product price contains the currency of the current region (based on URL).
+8- The default language is 'en'. The default region is 'ae'. 
+So in case the visitor go to this URL: www.domain.com/app-name ,
+the app will redirected him to: www.domain.com/app-name/en/ae
+9- The page view is sample (something like the screenshot above) and is has to be responsive.
+10- The language/region data should be saved in the session/cookie, so in the next visit/refresh if there is no parameters in the URL for the lang and region, the system hould redirect the user to the saved ones.
+
+The technologies/frameworks/points that should be used/followed:
+1- PHP framework Codeigniter 4/ Laravel
+2- All part of code should be commented-out clearly.
+3- The database structure is so important.
+4- Bootstrap framework for HTML responsivness.
+5- The security of the app is highly important (no sql injection, etc).
+6- When done, the app should be pushed to a private GIT repository, with all needed files to be able to run on any local device.
