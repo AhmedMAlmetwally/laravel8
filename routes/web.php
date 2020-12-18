@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'SetLocaleRegion'], function(){
+    Route::get('/', function(){});
+    Route::get('{locale}', function(){});
 });
 
-Auth::routes();
+$prefix = '{locale}/{region}';
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => $prefix, 'middleware' => 'SetLocaleRegion'], function(){
+    Route::get('/', function(){
+        // dd('Ahmed');
+    })->name('home');
+});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
