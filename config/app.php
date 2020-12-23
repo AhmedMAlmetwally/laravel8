@@ -85,6 +85,7 @@ return [
 
     'locale_array' => ['ar', 'en', 'fr'],
     'region_array' => ['ae', 'eg', 'sa'],
+    'region_currency_array' => ['ae' => 'AED', 'eg' => 'EGP', 'sa' => 'SAR'],
 
     /*
     |--------------------------------------------------------------------------

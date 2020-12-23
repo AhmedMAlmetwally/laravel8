@@ -33,6 +33,8 @@ class SetLocaleRegion
             Cookie::queue('locale', $locale, 5256000);
             Cookie::queue('region', $region, 5256000);
 
+            app()->setLocale($locale);
+
             return redirect()->route('home', ['locale' => $locale, 'region' => $region]);
         }
         elseif( $region == NULL )
@@ -42,9 +44,17 @@ class SetLocaleRegion
              * if so get its value form cookie
              * if it is not set save it and redirect
              */
+
+            if( !in_array( $locale, config('app.locale_array')) )
+            {
+                $locale = $request->cookie('locale') && in_array( $request->cookie('locale'), config('app.locale_array')) ? $request->cookie('locale') : config('app.locale');
+            }
+
             $region = $request->cookie('region') ? $request->cookie('region') : config('app.region');
 
             Cookie::queue('region', $region, 5256000);
+
+            app()->setLocale($locale);
 
             return redirect()->route('home', ['locale' => $locale, 'region' => $region]);
         }
@@ -73,6 +83,11 @@ class SetLocaleRegion
 
                 return redirect()->route($route, ['locale' => $locale, 'region' => $region]);
             }
+
+            app()->setLocale($locale);
+
+            Cookie::queue('locale', $locale, 5256000);
+            Cookie::queue('region', $region, 5256000);
         }
 
         return $next($request);
