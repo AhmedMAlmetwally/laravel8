@@ -9,7 +9,7 @@ class SetDefaultLocaleForUrls
 {
     public function handle($request, Closure $next)
     {
-        URL::defaults(['locale' => 'en', 'region' => 'ae']);
+        URL::defaults(['locale' => session()->get('locale'), 'region' => session()->get('region')]);
 
         return $next($request);
     }

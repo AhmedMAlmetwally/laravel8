@@ -19,6 +19,8 @@ class CreateProductStockTable extends Migration
             $table->integer('quantity');
             $table->string('region');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
