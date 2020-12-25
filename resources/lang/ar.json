@@ -10,5 +10,9 @@
     "Quantity" : "الكمية",
     "Total" : "الإجمالي",
     "Number of items" : "عدد المنتجات",
-    "Item Total" : "إجمالي المنتجات"
+    "Item Total" : "إجمالي المنتجات",
+    "Add to cart" : "إضافة الى السلة",
+    "Not available" : "غير متاح",
+    "Product added to cart" : "تم إضافة المنتج الى السلة",
+    "items in stock" : "منتجات في المخزون"
 }

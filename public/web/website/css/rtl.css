@@ -1,0 +1,113 @@
+body{
+    direction: rtl;
+}
+.owl-carousel.owl-loaded {
+    display: block;
+    direction: ltr;
+}
+@media (min-width: 1200px)
+{
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9 {
+    float: right;
+}
+}
+.header .header__top p {
+    text-align: right;
+}
+.header__actions {
+    float: left;
+}
+.header__actions .ps-dropdown .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+.navigation .navigation__column {
+    float: right;
+}
+.navigation .navigation__column.right {
+    text-align: left;
+}
+.menu > li {
+    float: right;
+}
+.sub-menu{
+    right: 0;
+    left: unset;
+}
+.sub-menu > li {
+    text-align: right;
+}
+.mega-menu {
+    right: 0;
+    left: unset;
+}
+.mega-menu .mega-wrap {
+    text-align: right;
+}
+.mega-menu .mega-item a:before {
+    right: 0;
+    left: unset;
+}
+.mega-menu .mega-item a:hover {
+    padding-right: 25px;
+    padding-left: 0;
+}
+.navigation .ps-search--header {
+    margin-left: 15px;
+    margin-right: 0;
+}
+.ps-search--header > button {
+    left: 15px;
+    right: unset;
+}
+.ps-cart__toggle span {
+    left: -5px;
+    right: unset;
+}
+.ps-cart__listing {
+    left: 0;
+    right: unset;
+}
+.ps-cart-item .ps-cart-item__close {
+    left: 15px;
+    right: unset;
+}
+.ps-cart-item__thumbnail {
+    float: right;
+}
+.ps-cart-item__content {
+    float: right;
+    padding-left: 0;
+    padding-right: 15px;
+}
+.ps-cart-item__title {
+    text-align: right;
+}
+.ps-cart-item__content p span {
+    margin-left: 25px;
+    margin-right: 0;
+}
+.ps-cart-item__content p i {
+    margin-left: 0;
+    margin-right: 8px;
+}
+.ps-cart__total p {
+    text-align: right;
+}
+.ps-cart__total p span {
+    float: left;
+}
+.ps-shoe .ps-shoe__price {
+    left: 10px;
+    right: unset;
+}
+.grid-item .owl-carousel .owl-stage {
+    float: right;
+}
+.grid-item .owl-carousel .owl-item {
+    float: right;
+}
+.ps-badge {
+    right: 0;
+    left: unset;
+}

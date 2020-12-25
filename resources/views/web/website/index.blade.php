@@ -2,7 +2,7 @@
 <!--[if IE 7]><html class="ie ie7"><![endif]-->
 <!--[if IE 8]><html class="ie ie8"><![endif]-->
 <!--[if IE 9]><html class="ie ie9"><![endif]-->
-<html lang="en" dir='ltr'>
+<html lang="{{ session()->get('locale') }}" dir='{{ session()->get('locale') == 'ar' ? 'rtl' : 'ltr' }}'>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="{{ asset('web/website') }}/plugins/revolution/css/navigation.css">
     <!-- Custom-->
     <link rel="stylesheet" href="{{ asset('web/website') }}/css/style.css">
+    @if( session()->get('locale') == 'ar' )
+    <link rel="stylesheet" href="{{ asset('web/website') }}/css/rtl.css">
+    @endif
     <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
@@ -501,6 +504,11 @@
     <script type="text/javascript" src="{{ asset('web/website') }}/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
     <script type="text/javascript" src="{{ asset('web/website') }}/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
     <!-- Custom scripts-->
+    @if( session()->get('locale') == 'ar' )
+    <script type="text/javascript" src="{{ asset('web/website') }}/js/main-rtl.js"></script>
+    @else
+    <script type="text/javascript" src="{{ asset('web/website') }}/js/main.js"></script>
+    @endif
     <script type="text/javascript" src="{{ asset('web/website') }}/js/main.js"></script>
     @stack('js')
     @include('web.website.includes.js')

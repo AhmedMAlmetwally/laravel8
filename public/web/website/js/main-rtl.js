@@ -263,6 +263,7 @@
                     isotope: {
                         columnWidth: '.grid-sizer'
                     },
+                    isRTL: true,
                     filter: selector
                 });
                 return false;
