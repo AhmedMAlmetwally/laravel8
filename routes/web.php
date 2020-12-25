@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -24,5 +25,6 @@ $prefix = '{locale}/{region}';
 
 Route::group(['prefix' => $prefix, 'middleware' => ['SetLocaleRegion', 'SetDefaultLocaleForUrls']], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('product/cart/add', [CartController::class, 'store'])->name('product.cart.add');
     Route::get('test', function(){})->name('test');
 });

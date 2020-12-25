@@ -502,5 +502,7 @@
     <script type="text/javascript" src="{{ asset('web/website') }}/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
     <!-- Custom scripts-->
     <script type="text/javascript" src="{{ asset('web/website') }}/js/main.js"></script>
+    @stack('js')
+    @include('web.website.includes.js')
   </body>
 </html>

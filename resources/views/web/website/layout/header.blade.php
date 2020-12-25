@@ -22,21 +22,21 @@
                             </ul>
                         </div>
                         <div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">{{ trans('Region') }}<i class="fa fa-angle-down"></i></a>
+                                aria-haspopup="true" aria-expanded="false">{{ trans(session()->get('region')) }}<i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 @foreach( config('app.region_array') AS $region )
                                 <li>
-                                    <a href="{{ $region }}">{{ trans($region) }}</a>
+                                    <a href="{{ str_replace(session()->get('region'), $region, request()->fullUrl()) }}">{{ trans($region) }}</a>
                                 </li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">{{ trans('Language') }}<i class="fa fa-angle-down"></i></a>
+                                aria-haspopup="true" aria-expanded="false">{{ trans(session()->get('locale')) }}<i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 @foreach( config('app.locale_array') AS $locale )
                                 <li>
-                                    <a href="{{ $locale }}">{{ trans($locale) }}</a>
+                                    <a href="{{ str_replace(session()->get('locale'), $locale, request()->fullUrl()) }}">{{ trans($locale) }}</a>
                                 </li>
                                 @endforeach
                             </ul>
@@ -149,44 +149,41 @@
                     <input class="form-control" type="text" placeholder="Search Product…">
                     <button><i class="ps-icon-search"></i></button>
                 </form>
-                <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i>20</i></span><i
-                            class="ps-icon-shopping-cart"></i></a>
+                <div class="ps-cart">
+                    <a class="ps-cart__toggle" href="#">
+                        <span>
+                            <i>{{ count(session()->get('cart')) }}</i>
+                        </span>
+                        <i class="ps-icon-shopping-cart"></i>
+                    </a>
                     <div class="ps-cart__listing">
                         <div class="ps-cart__content">
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="product-detail.html"></a><img
-                                        src="{{ asset('web/website') }}/images/cart-preview/1.jpg"
-                                        alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title"
-                                        href="product-detail.html">Amazin’ Glazin’</a>
-                                    <p><span>Quantity:<i>12</i></span><span>Total:<i>£176</i></span></p>
+                            @foreach( get_cart_products() AS $product )
+                            <div class="ps-cart-item">
+                                <a class="ps-cart-item__close" href="#"></a>
+                                <div class="ps-cart-item__thumbnail">
+                                    <a href="product-detail.html"></a>
+                                    <img src="{{ asset('uploads/products/' . $product->id . '/' . $product->cover[0]->image) }}" alt="">
+                                </div>
+                                <div class="ps-cart-item__content">
+                                    <a class="ps-cart-item__title" href="product-detail.html">{{ $product->title }}</a>
+                                    <p>
+                                        <span>{{ trans('Quantity') }}:<i>{{ $product->quantity }}</i></span>
+                                        <span>{{ trans('Total') }}:<i>{{ get_current_currency() }}{{ $product->price->price }}</i></span>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="product-detail.html"></a><img
-                                        src="{{ asset('web/website') }}/images/cart-preview/2.jpg"
-                                        alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title"
-                                        href="product-detail.html">The Crusty Croissant</a>
-                                    <p><span>Quantity:<i>12</i></span><span>Total:<i>£176</i></span></p>
-                                </div>
-                            </div>
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="product-detail.html"></a><img
-                                        src="{{ asset('web/website') }}/images/cart-preview/3.jpg"
-                                        alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title"
-                                        href="product-detail.html">The Rolling Pin</a>
-                                    <p><span>Quantity:<i>12</i></span><span>Total:<i>£176</i></span></p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="ps-cart__total">
-                            <p>Number of items:<span>36</span></p>
-                            <p>Item Total:<span>£528.00</span></p>
+                            <p>{{ trans('Number of items') }}:<span>{{ count(session()->get('cart')) }}</span></p>
+                            <p>{{ trans('Item Total') }}:<span>£528.00</span></p>
                         </div>
-                        <div class="ps-cart__footer"><a class="ps-btn" href="cart.html">Check out<i
-                                    class="ps-icon-arrow-left"></i></a></div>
+                        <div class="ps-cart__footer">
+                            <a class="ps-btn" href="cart.html">{{ trans('Check out') }}
+                                <i class="ps-icon-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="menu-toggle"><span></span></div>

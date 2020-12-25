@@ -4,11 +4,11 @@
             <h3 class="ps-section__title" data-mask="features">- Features Products</h3>
             <ul class="ps-masonry__filter">
                 <li class="current"><a href="#" data-filter="*">All <sup>8</sup></a></li>
-                <li><a href="#" data-filter=".nike">Nike <sup>1</sup></a></li>
-                <li><a href="#" data-filter=".adidas">Adidas <sup>1</sup></a></li>
-                <li><a href="#" data-filter=".men">Men <sup>1</sup></a></li>
-                <li><a href="#" data-filter=".women">Women <sup>1</sup></a></li>
-                <li><a href="#" data-filter=".kids">Kids <sup>4</sup></a></li>
+                <li><a href="#" data-filter=".ON">ON <sup>1</sup></a></li>
+                <li><a href="#" data-filter=".MUSCLEADD">MUSCLEADD <sup>1</sup></a></li>
+                <li><a href="#" data-filter=".BPI">BPI <sup>1</sup></a></li>
+                <li><a href="#" data-filter=".MUSCLETECH">MUSCLETECH <sup>1</sup></a></li>
+                <li><a href="#" data-filter=".RAND">RAND <sup>4</sup></a></li>
             </ul>
         </div>
         <div class="ps-section__content pb-50">
@@ -30,7 +30,7 @@
                                     <a class="ps-shoe__favorite" href="#">
                                         <i class="ps-icon-heart"></i>
                                     </a>
-                                    <img style="max-height: 400px;object-fit: cover;" src="{{ asset('uploads/products/' . $product->id . '/' . $product->cover[0]->image) }}" alt="">
+                                    <img src="{{ asset('uploads/products/' . $product->id . '/' . $product->cover[0]->image) }}" alt="">
                                     <a class="ps-shoe__overlay" href="{{ route('test') }}"></a>
                                 </div>
                                 <div class="ps-shoe__content">
@@ -49,6 +49,7 @@
                                             <a href="#"> Jordan</a>
                                         </p>
                                         <span class="ps-shoe__price">{{ get_current_currency() }} {{ $product->price->price }}</span>
+                                        <button class='btn btn-default btn-block add-to-cart' data-url="{{ route('product.cart.add') }}" data-product="{{ $product->id }}">{{ trans('Add to cart') }}</button>
                                     </div>
                                 </div>
                             </div>

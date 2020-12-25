@@ -6538,3 +6538,24 @@ html .bg--parallax {
   padding-left: 100px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.owl-carousel .owl-item img {
+    height: 90px;
+    object-fit: cover;
+}
+.owl-carousel .owl-item {
+    /* height: 90px; */
+}
+.ps-shoe .ps-shoe__thumbnail img {
+    height: 400px;
+    object-fit: cover;
+}
+.add-to-cart, .add-to-cart:active, .add-to-cart:focus {
+    border: none;
+    border-radius: 0;
+    background: #15a49a;
+    padding: 10px;
+    color: #FFF;
+    outline: none;
+    margin-bottom: 10px;
+}

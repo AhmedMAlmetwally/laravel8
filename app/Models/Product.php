@@ -27,6 +27,11 @@ class Product extends Model
 
     public function price()
     {
-        return $this->hasOne(ProductPrice::class)->where('region', request()->cookie('region'));
+        return $this->hasOne(ProductPrice::class)->where('region', session()->get('region'));
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(ProductStock::class)->where('region', session()->get('region'));
     }
 }

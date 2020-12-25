@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->with('price')->take(8)->get();
-        $cats = ['kids' => 'kids', 'nike' => 'nike', 'adidas' => 'adidas', 'men' => 'men', 'women' => 'women'];
-        // dd($products);
+        $products = Product::with(['images', 'price', 'stock'])->take(8)->get();
+        $cats = ['ON' => 'ON', 'MUSCLEADD' => 'MUSCLEADD', 'BPI' => 'BPI', 'MUSCLETECH' => 'MUSCLETECH', 'RAND' => 'RAND'];
         return view('web.website.index', compact('products', 'cats'));
     }
 }
