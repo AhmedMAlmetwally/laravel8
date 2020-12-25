@@ -11,10 +11,14 @@ if (!function_exists('get_current_currency')) {
 if (!function_exists('get_cart_products')) {
     function get_cart_products()
     {
+        if( !session()->has('cart') ) session()->put('cart', []);
         $cart = session()->get('cart');
         $products = [];
         $total = 0;
         $quantity = 0;
+
+        if( empty( $cart ) ) return (object) ['items' => [], 'total' => '', 'quantity' => ''];
+
         foreach( $cart AS $cart_item )
         {
             $product = Product::find($cart_item['id']);
