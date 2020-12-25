@@ -6559,3 +6559,13 @@ html .bg--parallax {
     outline: none;
     margin-bottom: 10px;
 }
+.ps-badge {
+    width: auto;
+    height: auto;
+    padding: 5px 12px;
+}
+.ps-badge > span {
+    position: relative;
+    top: unset;
+    left: unset;
+}

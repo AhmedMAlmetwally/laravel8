@@ -25,8 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['images', 'price', 'stock'])->take(8)->get();
+        $products = Product::with(['images', 'price'])->take(8)->get();
         $cats = ['ON' => 'ON', 'MUSCLEADD' => 'MUSCLEADD', 'BPI' => 'BPI', 'MUSCLETECH' => 'MUSCLETECH', 'RAND' => 'RAND'];
+
         return view('web.website.index', compact('products', 'cats'));
     }
 }

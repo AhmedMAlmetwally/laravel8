@@ -21,12 +21,11 @@
                         <div class="grid-item__content-wrapper">
                             <div class="ps-shoe mb-30">
                                 <div class="ps-shoe__thumbnail" style="height: 400px">
-                                    <div class="ps-badge">
-                                        <span>New</span>
+                                    @if( $product->available == 0 ||  $product->stock() == 0 )
+                                    <div class="ps-badge ps-badge--sale">
+                                        <span>{{ trans('Not available') }} </span>
                                     </div>
-                                    <div class="ps-badge ps-badge--sale ps-badge--2nd">
-                                        <span>-35%</span>
-                                    </div>
+                                    @endif
                                     <a class="ps-shoe__favorite" href="#">
                                         <i class="ps-icon-heart"></i>
                                     </a>
@@ -44,12 +43,13 @@
                                     <div class="ps-shoe__detail">
                                         <a class="ps-shoe__name" href="#">{{ $product->title }}</a>
                                         <p class="ps-shoe__categories">
-                                            <a href="#">Men shoes</a>,
-                                            <a href="#">Nike</a>,
-                                            <a href="#"> Jordan</a>
+                                            <a href="#">{{  $product->stock() }} {{ trans('items in stock') }}</a>
                                         </p>
                                         <span class="ps-shoe__price">{{ get_current_currency() }} {{ $product->price->price }}</span>
+                                        @if( $product->available == 0 || $product->stock() == 0 )
+                                        @else
                                         <button class='btn btn-default btn-block add-to-cart' data-url="{{ route('product.cart.add') }}" data-product="{{ $product->id }}">{{ trans('Add to cart') }}</button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

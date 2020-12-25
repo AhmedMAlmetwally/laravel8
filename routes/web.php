@@ -26,5 +26,6 @@ $prefix = '{locale}/{region}';
 Route::group(['prefix' => $prefix, 'middleware' => ['SetLocaleRegion', 'SetDefaultLocaleForUrls']], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('product/cart/add', [CartController::class, 'store'])->name('product.cart.add');
+    Route::post('product/cart/remove', [CartController::class, 'remove'])->name('product.cart.remove');
     Route::get('test', function(){})->name('test');
 });

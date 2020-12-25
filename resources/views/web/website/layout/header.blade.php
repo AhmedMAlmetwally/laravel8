@@ -1,3 +1,5 @@
+@php $cart = get_cart_products(); @endphp
+
 <header class="header">
     <div class="header__top">
         <div class="container-fluid">
@@ -152,15 +154,15 @@
                 <div class="ps-cart">
                     <a class="ps-cart__toggle" href="#">
                         <span>
-                            <i>{{ count(session()->get('cart')) }}</i>
+                            <i class='cart-total-quantity'>{{ count(session()->get('cart')) }}</i>
                         </span>
                         <i class="ps-icon-shopping-cart"></i>
                     </a>
                     <div class="ps-cart__listing">
                         <div class="ps-cart__content">
-                            @foreach( get_cart_products() AS $product )
+                            @foreach( $cart->items AS $product )
                             <div class="ps-cart-item">
-                                <a class="ps-cart-item__close" href="#"></a>
+                                <a class="ps-cart-item__close remove-product-from-cart" href="#" data-product="{{ $product->id }}"></a>
                                 <div class="ps-cart-item__thumbnail">
                                     <a href="product-detail.html"></a>
                                     <img src="{{ asset('uploads/products/' . $product->id . '/' . $product->cover[0]->image) }}" alt="">
@@ -168,16 +170,18 @@
                                 <div class="ps-cart-item__content">
                                     <a class="ps-cart-item__title" href="product-detail.html">{{ $product->title }}</a>
                                     <p>
-                                        <span>{{ trans('Quantity') }}:<i>{{ $product->quantity }}</i></span>
-                                        <span>{{ trans('Total') }}:<i>{{ get_current_currency() }}{{ $product->price->price }}</i></span>
+                                        <span>{{ trans('Quantity') }}:<i class='cart-item-quantity-{{ $product->id }}'>{{ $product->quantity }}</i></span>
+                                    </p>
+                                    <p>
+                                        <span>{{ trans('Total') }}:<i class='cart-item-total-{{ $product->id }}'>{{ $product->price->price * $product->quantity }}</i><i>{{ get_current_currency() }}</i></span>
                                     </p>
                                 </div>
                             </div>
                             @endforeach
                         </div>
                         <div class="ps-cart__total">
-                            <p>{{ trans('Number of items') }}:<span>{{ count(session()->get('cart')) }}</span></p>
-                            <p>{{ trans('Item Total') }}:<span>£528.00</span></p>
+                            <p>{{ trans('Number of items') }}:<span class='cart-total-quantity'>{{ $cart->quantity }}</span></p>
+                            <p>{{ trans('Item Total') }}:<span>{{ get_current_currency() }}</span> <span class='cart-total-price'>{{ $cart->total }}</span></p>
                         </div>
                         <div class="ps-cart__footer">
                             <a class="ps-btn" href="cart.html">{{ trans('Check out') }}

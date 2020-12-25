@@ -30,8 +30,13 @@ class Product extends Model
         return $this->hasOne(ProductPrice::class)->where('region', session()->get('region'));
     }
 
-    public function stock()
+    public function regionStock()
     {
         return $this->hasMany(ProductStock::class)->where('region', session()->get('region'));
+    }
+
+    public function stock()
+    {
+        return $this->regionStock->sum('quantity');
     }
 }

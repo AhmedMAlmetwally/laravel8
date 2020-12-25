@@ -39,6 +39,8 @@ class CartController extends Controller
         if( $product == NULL ) return response()->json(['status' => 'error', 'messgae' => trans('Product not found')]);
         if( $product->available == 0 ) return response()->json(['status' => 'error', 'messgae' => trans('Product is not available')]);
 
+        $new_product = false;
+
         if( session()->has('cart.' . $product->id) )
         {
             $quantity = session()->get('cart.' . $product->id . '.quantity') + 1;
@@ -46,55 +48,20 @@ class CartController extends Controller
         else
         {
             $quantity = 1;
+            $product->image = asset('uploads/products/' . $product->id . '/' . $product->cover[0]->image);
+            $product->title_string = $product->title;
+            $product->price_string = $product->price->price;
+            $new_product = $product;
         }
 
         session()->put('cart.' . $product->id, ['id' => $product->id, 'quantity' => $quantity]);
 
-        return response()->json(['status' => 'success', 'messgae' => trans('Product added to cart')]);
+        return response()->json(['status' => 'success', 'messgae' => trans('Product added to cart'), 'cart' => get_cart_products(), 'new_product' => $new_product]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function remove( Request $request )
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        session()->forget('cart.' . $request->product_id);
+        return response()->json(['status' => 'success', 'messgae' => trans('Product removed from cart successfully'), 'cart' => get_cart_products()]);
     }
 }
